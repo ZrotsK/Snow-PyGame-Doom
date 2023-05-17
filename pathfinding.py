@@ -4,7 +4,7 @@ class PathFinding:
     def __init__(self, game):
         self.game = game
         self.map = game.map.mini_map
-        self.ways = [-1, 0], [0, -1], [1, 0], [-1, -1], [1, -1], [1, 1], [-1, 1]
+        self.ways = [-1, 0], [0, -1], [1, 0], [0, 1], [-1, -1], [1, -1], [1, 1], [-1, 1]
         self.graph = {}
         self.get_graph()
 
@@ -18,14 +18,13 @@ class PathFinding:
             step = self.visited[step]
         return path[-1]
 
-
     def bfs(self, start, goal, graph):
         queue = deque([start])
         visited = {start: None}
 
         while queue:
-            cur_nose = queue.popleft()
-            if cur_nose == goal:
+            cur_node = queue.popleft()
+            if cur_node == goal:
                 break
             next_nodes = graph[cur_node]
 

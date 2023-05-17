@@ -26,11 +26,25 @@ class ObjectHandler:
         #npc map
         add_npc(NPC(game))
         add_npc(NPC(game, pos=(11.5, 4.5)))
+        add_npc(CyberDemonNPC(game, pos=(15.9, 1.1)))
+        add_npc(CacoDemonNPC(game, pos=(15.9, 8.9)))
+        add_npc(CacoDemonNPC(game, pos=(15.9, 8.9)))
+        add_npc(CacoDemonNPC(game, pos=(15.9, 8.9)))
+        add_npc(CacoDemonNPC(game, pos=(15.9, 8.9)))
+        add_npc(CacoDemonNPC(game, pos=(15.9, 8.9)))
+
+    def check_win(self):
+        if not(self.npc_positions):
+            self.game.object_renderer.win()
+            pg.display.flip()
+            pg.time.delay(1500)
+            self.game.new_game()
 
     def update(self):
         self.npc_positions = {npc.map_pos for npc in self.npc_list if npc.alive}
         [sprite.update() for sprite in self.sprite_list]
         [npc.update() for npc in self.npc_list]
+        self.check_win()
 
     def add_npc(self, npc):
         self.npc_list.append(npc)

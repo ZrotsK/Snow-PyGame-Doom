@@ -33,7 +33,7 @@ class Player:
   def get_damage(self, damage):
     self.health -= damage
     self.game.object_renderer.player_damage()
-    self.game.player_pain.play()
+    self.game.sound.player_pain.play()
     self.check_game_over()
 
   def single_fire_event(self, event):
@@ -46,7 +46,7 @@ class Player:
   def movement(self):
     sin_a = math.sin(self.angle)
     cos_a = math.cos(self.angle)
-    dx, dy = 0,0
+    dx, dy = 0, 0
     speed = PLAYER_SPEED * self.game.delta_time
     speed_sin = speed * sin_a
     speed_cos = speed * cos_a
